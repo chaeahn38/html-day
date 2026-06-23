@@ -190,8 +190,14 @@ a:hover {
 
     editor.value = styleTag.textContent.trim();
 
+    function updateDotGradient() {
+        const bg = getComputedStyle(document.body).backgroundColor || '#ffffff';
+        dot.style.background = `radial-gradient(circle, #00ff00 0%, ${bg} 50%)`;
+    }
+
     editor.addEventListener('input', () => {
         styleTag.textContent = editor.value;
+        updateDotGradient();
     });
 
     document.getElementById('to-fr').addEventListener('click', e => {
@@ -220,6 +226,7 @@ a:hover {
         transition: left 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     `;
     document.body.appendChild(dot);
+    updateDotGradient();
 
     const isMobile = window.matchMedia('(hover: none)').matches;
 
