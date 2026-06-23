@@ -65,8 +65,19 @@ a:hover {
         h1{
             margin: 0.5rem 0;
         }
+        #resizer {
+            width: 5px;
+            cursor: col-resize;
+            background: transparent;
+            flex-shrink: 0;
+        }
+        #resizer:hover, #resizer.dragging {
+            background: #ccc;
+        }
         #right {
             width: 600px;
+            min-width: 100px;
+            max-width: 90vw;
             display: flex;
             flex-direction: column;
             background: #f5f5f5;
@@ -115,7 +126,7 @@ a:hover {
                 <p>August 8, 2026, 5-8pm, <a href="https://www.google.com/maps/place/Plage+de+Vidy-Théâtre/@46.519337,6.634453,17z/data=!3m1!4b1!4m5!3m4!1s0x478c66e2f7f7f7f7:0x1234567890abcdef!8m2!3d46.519337!4d6.634453" target="_blank">Plage de Vidy-Théâtre</a>, 1007 Lausanne</p>
 
                 <p><strong>Who is running this?</strong></p>
-                <p><a href="mailto:chaeyunahn@gmail.com" target="_blank">Chae</a> and <a href="https://www.instagram.com/teograjqevci/" target="_blank"></a>aTeo</a></p>
+                <p><a href="https://www.instagram.com/chaeyunahn" target="_blank">Chae</a> and <a href="https://www.instagram.com/teograjqevci/" target="_blank">Teo</a></p>
 
                 <p><strong>I'm not in Lausanne. Is there an event in my city?</strong></p>
                 <p>Check out <a href="https://2026.html.energy/">html.energy/events.html</a>. If your city isn't listed, feel free to organize your own!</p>
@@ -151,12 +162,36 @@ a:hover {
         </div>
     </div>
 
+    <div id="resizer"></div>
     <div id="right">
         <textarea id="css-editor"></textarea>
     </div>
 </div>
 
 <script>
+    const resizer = document.getElementById('resizer');
+    const right = document.getElementById('right');
+
+    resizer.addEventListener('mousedown', e => {
+        resizer.classList.add('dragging');
+        document.body.style.userSelect = 'none';
+        document.body.style.cursor = 'col-resize';
+
+        const onMove = e => {
+            const newWidth = window.innerWidth - e.clientX;
+            right.style.width = Math.max(100, newWidth) + 'px';
+        };
+        const onUp = () => {
+            resizer.classList.remove('dragging');
+            document.body.style.userSelect = '';
+            document.body.style.cursor = '';
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+        };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+    });
+
     const styleTag = document.getElementById('user-style');
     const editor = document.getElementById('css-editor');
 
