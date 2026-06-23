@@ -199,10 +199,11 @@ a:hover {
             dot.style.top = touch.clientY + 'px';
         });
     } else {
-        document.querySelectorAll('h1, p, ul').forEach(el => {
-            el.addEventListener('mouseenter', () => dot.style.display = 'block');
-            el.addEventListener('mouseleave', () => dot.style.display = 'none');
-        });
+        dot.style.display = 'block';
+
+        const right = document.getElementById('right');
+        right.addEventListener('mouseenter', () => dot.style.display = 'none');
+        right.addEventListener('mouseleave', () => dot.style.display = 'block');
 
         document.addEventListener('mousemove', e => {
             dot.style.left = e.clientX + 'px';
