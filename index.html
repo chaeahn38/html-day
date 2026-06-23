@@ -79,29 +79,61 @@ a:hover {
 <div id="layout">
     <div id="left">
         <div class="intro">
-             <h1>Come write HTML with us!</h1>
-            <h1>HTML Day 2026 Lausanne</h1>
-            <p><strong>What is this?</strong></p>
-            <p>This is a get-together to write HTML documents as a part of World HTML Day. Feel the <a href="https://html.energy/" target="_blank">HTML Energy</a>.</p>
+            <div id="en">
+                <h1>Come write HTML with us!</h1>
+                <h1>HTML Day 2026 Lausanne</h1>
 
-            <p><strong>Do I need to know HTML to join?</strong></p>
-            <p>No, everyone is welcome and we will help each other out.</p>
+                <a href="#" id="to-fr">Français</a>
+                <p><strong>What is this?</strong></p>
+                <p>This is a get-together to write HTML documents as a part of World HTML Day. Feel the <a href="https://html.energy/" target="_blank">HTML Energy</a>.</p>
 
-            <p><strong>What should I bring?</strong></p>
-            <ul>
-                <li>something to write HTML on — a piece of paper, a computer, a typewriter, a chalkboard...</li>
-                <li>a picnic blanket</li>
-                <li>a snack to share</li>
-            </ul>
+                <p><strong>Do I need to know HTML to join?</strong></p>
+                <p>No, everyone is welcome and we will help each other out.</p>
 
-            <p><strong>When, where?</strong></p>
-            <p>August 8, 2026, 5-8pm, <a href="https://www.google.com/maps/place/Plage+de+Vidy-Théâtre/@46.519337,6.634453,17z/data=!3m1!4b1!4m5!3m4!1s0x478c66e2f7f7f7f7:0x1234567890abcdef!8m2!3d46.519337!4d6.634453" target="_blank">Plage de Vidy-Théâtre</a>, 1007 Lausanne</p>
+                <p><strong>What should I bring?</strong></p>
+                <ul>
+                    <li>something to write HTML on — a piece of paper, a computer, a typewriter, a chalkboard...</li>
+                    <li>a picnic blanket</li>
+                    <li>a snack to share</li>
+                </ul>
 
-            <p><strong>Who is running this?</strong></p>
-            <p><a href="mailto:chaeyunahn@gmail.com" target="_blank">Chae</a>... and I am looking for co-host! Mail me if you're interested.</p>
+                <p><strong>When, where?</strong></p>
+                <p>August 8, 2026, 5-8pm, <a href="https://www.google.com/maps/place/Plage+de+Vidy-Théâtre/@46.519337,6.634453,17z/data=!3m1!4b1!4m5!3m4!1s0x478c66e2f7f7f7f7:0x1234567890abcdef!8m2!3d46.519337!4d6.634453" target="_blank">Plage de Vidy-Théâtre</a>, 1007 Lausanne</p>
 
-            <p><strong>I'm not in Lausanne. Is there an event in my city?</strong></p>
-            <p>Check out <a href="https://2026.html.energy/">html.energy/events.html</a>. If your city isn't listed, feel free to organize your own!</p>
+                <p><strong>Who is running this?</strong></p>
+                <p><a href="mailto:chaeyunahn@gmail.com" target="_blank">Chae</a>... and I am looking for co-host! Mail me if you're interested.</p>
+
+                <p><strong>I'm not in Lausanne. Is there an event in my city?</strong></p>
+                <p>Check out <a href="https://2026.html.energy/">html.energy/events.html</a>. If your city isn't listed, feel free to organize your own!</p>
+            </div>
+
+            <div id="fr" style="display:none">
+                <h1>Viens écrire du HTML avec nous !</h1>
+                <h1>HTML Day 2026 Lausanne</h1>
+
+                <a href="#" id="to-en">English</a>
+                <p><strong>C'est quoi ?</strong></p>
+                <p>C'est un rassemblement pour écrire des documents HTML dans le cadre du World HTML Day. Ressens l'<a href="https://html.energy/" target="_blank">HTML Energy</a> !</p>
+
+                <p><strong>Faut-il connaître le HTML pour venir ?</strong></p>
+                <p>Non, tout le monde est le bienvenu et on s'entraide.</p>
+
+                <p><strong>Qu'est-ce que j'apporte ?</strong></p>
+                <ul>
+                    <li>de quoi écrire du HTML — une feuille de papier, un ordinateur, une machine à écrire, un tableau noir...</li>
+                    <li>une couverture de pique-nique</li>
+                    <li>un en-cas à partager</li>
+                </ul>
+
+                <p><strong>Quand, où ?</strong></p>
+                <p>8 août 2026, 17h–20h, <a href="https://www.google.com/maps/place/Plage+de+Vidy-Théâtre/@46.519337,6.634453,17z/data=!3m1!4b1!4m5!3m4!1s0x478c66e2f7f7f7f7:0x1234567890abcdef!8m2!3d46.519337!4d6.634453" target="_blank">Plage de Vidy-Théâtre</a>, 1007 Lausanne</p>
+
+                <p><strong>Qui organise ?</strong></p>
+                <p><a href="mailto:chaeyunahn@gmail.com" target="_blank">Chae</a>... et je cherche un·e co-organisateur·rice ! Écris-moi si ça t'intéresse.</p>
+
+                <p><strong>Je ne suis pas à Lausanne. Y a-t-il un événement dans ma ville ?</strong></p>
+                <p>Va voir <a href="https://2026.html.energy/">html.energy/events.html</a>. Si ta ville n'y est pas, n'hésite pas à organiser le tien !</p>
+            </div>
         </div>
     </div>
 
@@ -119,6 +151,18 @@ a:hover {
 
     editor.addEventListener('input', () => {
         styleTag.textContent = editor.value;
+    });
+
+    document.getElementById('to-fr').addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('en').style.display = 'none';
+        document.getElementById('fr').style.display = 'block';
+    });
+
+    document.getElementById('to-en').addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('fr').style.display = 'none';
+        document.getElementById('en').style.display = 'block';
     });
 
     const dot = document.createElement('div');
